@@ -1,12 +1,11 @@
 ﻿namespace SingletonPatterns
 {
-    internal class Servers
+    internal class ServerNonSingleton
     {
-        private static readonly Servers _instance = new Servers();
         private Dictionary<int, string> tableServers = new Dictionary<int, string>();
         private int nextServer = 0;
 
-        private Servers()
+        public ServerNonSingleton()
         {
             tableServers.Add(1, "Bob");
             tableServers.Add(2, "Tim");
@@ -15,15 +14,10 @@
             tableServers.Add(5, "Katie");
         }
 
-        public static Servers GetTableServers()
-        {
-            return _instance;
-        }
-
         public string GetNextServer()
         {
             string output = tableServers.ElementAt(nextServer).Value;
-            nextServer+=1;
+            nextServer += 1;
             if (nextServer >= tableServers.Count)
             {
                 nextServer = 0;
